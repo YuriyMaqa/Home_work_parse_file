@@ -7,7 +7,7 @@ import java.util.List;
 public class Me {
     public String name;
     public String surname;
-    @SerializedName("favorite_music")
+    @SerializedName("favorite music")
     public List<String> favoriteMusic;
     public Address address;
 }

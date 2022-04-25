@@ -79,6 +79,7 @@ public class FilesParsingTest {
             Me jsonObject = gson.fromJson(json, Me.class);
             assertThat(jsonObject.name).isEqualTo("Yuriy");
             assertThat(jsonObject.address.street).isEqualTo("Mira");
+            assertThat(jsonObject.favoriteMusic.get(1)).isEqualTo("Nirvana");
         }
     }
 }

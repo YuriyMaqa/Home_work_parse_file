@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static com.codeborne.pdftest.assertj.Assertions.assertThat;
+
 
 public class HwZipParse {
     ClassLoader classLoader = getClass().getClassLoader();
@@ -55,7 +57,7 @@ public class HwZipParse {
                 try (InputStream is = zipFile.getInputStream(zipEntry)) {
                     CSVReader reader = new CSVReader(new InputStreamReader(is));
                     List<String[]> content = reader.readAll();
-                    AssertionsForClassTypes.assertThat(content.get(0)).contains("Username; Identifier;First name;Last name");
+                    assertThat(content.get(0)).contains("Username; Identifier;First name;Last name");
                 }
             }
         }
@@ -72,7 +74,7 @@ public class HwZipParse {
             if (zipEntry.getName().equals("junit-user-guide-5.8.2.pdf")) {
                 try (InputStream is = zipFile.getInputStream(zipEntry)) {
                     PDF pdf = new PDF(is);
-                    AssertionsForClassTypes.assertThat(pdf.author).contains("Sam Brannen");
+                    assertThat(pdf.author).contains("Sam Brannen");
                 }
             }
         }
@@ -91,8 +93,9 @@ public class HwZipParse {
                     Gson gson = new Gson();
                     String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                     Me jsonObject = gson.fromJson(json, Me.class);
-                    AssertionsForClassTypes.assertThat(jsonObject.name).isEqualTo("Yuriy");
-                    AssertionsForClassTypes.assertThat(jsonObject.address.street).isEqualTo("Mira");
+                    assertThat(jsonObject.name).isEqualTo("Yuriy");
+                    assertThat(jsonObject.address.street).isEqualTo("Mira");
+
                 }
             }
         }
